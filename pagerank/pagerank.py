@@ -40,10 +40,7 @@ def crawl(directory):
 
     # Only include links to other pages in the corpus
     for filename in pages:
-        pages[filename] = set(
-            link for link in pages[filename]
-            if link in pages
-        )
+        pages[filename] = set(link for link in pages[filename] if link in pages)
 
     return pages
 
@@ -57,7 +54,21 @@ def transition_model(corpus, page, damping_factor):
     linked to by `page`. With probability `1 - damping_factor`, choose
     a link at random chosen from all pages in the corpus.
     """
-    raise NotImplementedError
+    pages = list(corpus.keys())
+    total_pages = len(pages)
+    links = corpus[page]
+
+    if not links:
+        return {p: 1 / total_pages for p in pages}
+
+    base_prob = (1 - damping_factor) / total_pages
+    link_prob = damping_factor / len(links)
+    distribution = {p: base_prob for p in pages}
+
+    for linked_page in links:
+        distribution[linked_page] += link_prob
+
+    return distribution
 
 
 def sample_pagerank(corpus, damping_factor, n):
@@ -69,7 +80,19 @@ def sample_pagerank(corpus, damping_factor, n):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    pages = list(corpus.keys())
+    counts = {page: 0 for page in pages}
+
+    current_page = random.choice(pages)
+    counts[current_page] += 1
+
+    for _ in range(1, n):
+        model = transition_model(corpus, current_page, damping_factor)
+        weights = [model[page] for page in pages]
+        current_page = random.choices(pages, weights=weights, k=1)[0]
+        counts[current_page] += 1
+
+    return {page: counts[page] / n for page in pages}
 
 
 def iterate_pagerank(corpus, damping_factor):
@@ -81,7 +104,34 @@ def iterate_pagerank(corpus, damping_factor):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    pages = list(corpus.keys())
+    total_pages = len(pages)
+
+    links_map = {
+        page: (corpus[page] if corpus[page] else set(pages))
+        for page in pages
+    }
+
+    ranks = {page: 1 / total_pages for page in pages}
+
+    while True:
+        new_ranks = {}
+        for page in pages:
+            rank_sum = 0
+            for possible_page in pages:
+                if page in links_map[possible_page]:
+                    rank_sum += ranks[possible_page] / len(links_map[possible_page])
+            new_ranks[page] = (1 - damping_factor) / total_pages + damping_factor * rank_sum
+
+        max_change = max(
+            abs(new_ranks[page] - ranks[page]) for page in pages
+        )
+        ranks = new_ranks
+
+        if max_change < 0.001:
+            break
+
+    return ranks
 
 
 if __name__ == "__main__":
