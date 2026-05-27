@@ -3,7 +3,9 @@ import random
 import re
 import sys
 
+# Probability of following a link vs. random jump
 DAMPING = 0.85
+# Number of random walks for sampling method
 SAMPLES = 10000
 
 
@@ -58,13 +60,17 @@ def transition_model(corpus, page, damping_factor):
     total_pages = len(pages)
     links = corpus[page]
 
+    # If page has no outlinks, distribute probability equally to all pages
     if not links:
         return {p: 1 / total_pages for p in pages}
 
+    # Base probability from random jumps to any page
     base_prob = (1 - damping_factor) / total_pages
+    # Probability distributed among actual links
     link_prob = damping_factor / len(links)
     distribution = {p: base_prob for p in pages}
 
+    # Add link probabilities on top of base probability
     for linked_page in links:
         distribution[linked_page] += link_prob
 
@@ -83,15 +89,18 @@ def sample_pagerank(corpus, damping_factor, n):
     pages = list(corpus.keys())
     counts = {page: 0 for page in pages}
 
+    # Start random walk from arbitrary page
     current_page = random.choice(pages)
     counts[current_page] += 1
 
+    # Simulate random walks and track visits
     for _ in range(1, n):
         model = transition_model(corpus, current_page, damping_factor)
         weights = [model[page] for page in pages]
         current_page = random.choices(pages, weights=weights, k=1)[0]
         counts[current_page] += 1
 
+    # Convert visit counts to probabilities
     return {page: counts[page] / n for page in pages}
 
 
@@ -107,22 +116,28 @@ def iterate_pagerank(corpus, damping_factor):
     pages = list(corpus.keys())
     total_pages = len(pages)
 
+    # Pages with no outlinks distribute rank equally to all pages
     links_map = {
         page: (corpus[page] if corpus[page] else set(pages))
         for page in pages
     }
 
+    # Initialize all pages with equal rank
     ranks = {page: 1 / total_pages for page in pages}
 
+    # Iterate until convergence
     while True:
         new_ranks = {}
         for page in pages:
+            # Sum contributions from all pages linking to this page
             rank_sum = 0
             for possible_page in pages:
                 if page in links_map[possible_page]:
                     rank_sum += ranks[possible_page] / len(links_map[possible_page])
+            # Apply PageRank formula with damping factor
             new_ranks[page] = (1 - damping_factor) / total_pages + damping_factor * rank_sum
 
+        # Check convergence by tracking maximum change
         max_change = max(
             abs(new_ranks[page] - ranks[page]) for page in pages
         )
