@@ -45,8 +45,11 @@ def get_mask_token_index(mask_token_id, inputs):
     Return the index of the token with the specified `mask_token_id`, or
     `None` if not present in the `inputs`.
     """
-    # TODO: Implement this function
-    raise NotImplementedError
+    # Check each token in the sequence until we find the mask token
+    for i, token_id in enumerate(inputs["input_ids"][0]):
+        if token_id == mask_token_id:
+            return i
+    return None
 
 
 
@@ -55,8 +58,10 @@ def get_color_for_attention_score(attention_score):
     Return a tuple of three integers representing a shade of gray for the
     given `attention_score`. Each value should be in the range [0, 255].
     """
-    # TODO: Implement this function
-    raise NotImplementedError
+    # Scale 0.0–1.0 to 0–255 and use the same value for R, G, B to get gray
+    # float() handles both plain floats and TensorFlow EagerTensors
+    value = int(round(float(attention_score) * 255))
+    return (value, value, value)
 
 
 
@@ -70,13 +75,17 @@ def visualize_attentions(tokens, attentions):
     include both the layer number (starting count from 1) and head number
     (starting count from 1).
     """
-    # TODO: Update this function to produce diagrams for all layers and heads.
-    generate_diagram(
-        1,
-        1,
-        tokens,
-        attentions[0][0][0]
-    )
+    # Loop over every layer and every head, producing one diagram each
+    for layer_idx, layer_attentions in enumerate(attentions):
+        num_heads = layer_attentions.shape[1]
+        for head_idx in range(num_heads):
+            # layer_attentions shape: (batch, heads, seq_len, seq_len); [0] selects the single batch item
+            generate_diagram(
+                layer_idx + 1,
+                head_idx + 1,
+                tokens,
+                layer_attentions[0][head_idx]
+            )
 
 
 def generate_diagram(layer_number, head_number, tokens, attention_weights):
