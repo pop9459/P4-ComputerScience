@@ -58,7 +58,21 @@ def load_data(data_dir):
     be a list of integer labels, representing the categories for each of the
     corresponding `images`.
     """
-    raise NotImplementedError
+    images = []
+    labels = []
+
+    for category in range(NUM_CATEGORIES):
+        category_dir = os.path.join(data_dir, str(category))
+        for filename in os.listdir(category_dir):
+            filepath = os.path.join(category_dir, filename)
+            img = cv2.imread(filepath)
+            if img is not None:
+                # Resize every image to a fixed size so the model gets uniform input
+                img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+                images.append(img)
+                labels.append(category)
+
+    return images, labels
 
 
 def get_model():
@@ -67,7 +81,29 @@ def get_model():
     `input_shape` of the first layer is `(IMG_WIDTH, IMG_HEIGHT, 3)`.
     The output layer should have `NUM_CATEGORIES` units, one for each category.
     """
-    raise NotImplementedError
+    model = tf.keras.models.Sequential([
+        # Two conv+pool blocks to detect low- and high-level visual features
+        tf.keras.layers.Conv2D(32, (3, 3), activation="relu",
+                               input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)),
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+        tf.keras.layers.Conv2D(64, (3, 3), activation="relu"),
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+        # Flatten into a 1D vector, then classify with a dense layer
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(128, activation="relu"),
+        # Dropout reduces overfitting by randomly disabling neurons during training
+        tf.keras.layers.Dropout(0.5),
+        # Output: one probability per sign category
+        tf.keras.layers.Dense(NUM_CATEGORIES, activation="softmax"),
+    ])
+
+    model.compile(
+        optimizer="adam",
+        loss="categorical_crossentropy",
+        metrics=["accuracy"],
+    )
+
+    return model
 
 
 if __name__ == "__main__":
