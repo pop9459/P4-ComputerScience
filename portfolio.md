@@ -1,14 +1,63 @@
 # Digital portfolio Computer Science Y1 P4
+
 - Name: Peter Kapsiar
 - Student ID: 5486866
 - Repository: https://github.com/pop9459/P4-ComputerScience
+- Module: TICS Semester 2 · Period 4 — *AI Odyssey: AI2nnovate — Transforming Tomorrow*
+- Course base: Harvard CS50 *Introduction to AI with Python* (https://cs50.harvard.edu/ai)
 
-## PageRank
+This portfolio is structured **week by week** following the modulebook's COMPUTER track
+(weeks 4.1–4.8). Per modulebook §5, each week documents: completed assignments,
+programming code, notes on the week's assignments, and an evaluation of the teaching
+activities.
 
-### Description
+**Legend**
+- **(P)** — explicit portfolio deliverable required by the modulebook schedule.
+- **Practice** — CS50 practice assignment for the week's theme.
+- **Optional** — not required for assessment.
+- `> **TODO**` — placeholder for work not yet completed / not yet documented.
+
+---
+
+## Week 4.1 — Planning & Setup
+
+**Theme:** Planning & Setup. Kick-off, treasure hunt, and the start of the Solo
+Innovator (Design Thinking) challenge.
+
+### Treasure hunt — (P)
+
+> **TODO** — Document the treasure-hunt result/evidence.
+
+### Design Thinking (Solo Innovator): Identifying current AI challenges — (P)
+
+The modulebook task: interview 3 people about their experiences with AI and write a
+short analysis identifying current challenges in AI.
+
+> **TODO** — Add the 3 interviews and the short analysis of current AI challenges.
+
+### Notes on the week's assignments
+
+- Set up the development environment for the period: Python virtual environment,
+  CS50 AI project dependencies, and the Git repository (`P4-ComputerScience`).
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the kick-off / Week 4.1 teaching activities.
+
+---
+
+## Week 4.2 — AI Uncertainty
+
+**Theme:** How AI handles uncertainty and probability. Practice assignments PageRank
+and Heredity; the custom **GIRank** portfolio assignment; and the Design Thinking
+"How Might We" step.
+
+### PageRank — Practice
+
+#### Description
 This program implements Google's PageRank algorithm to rank a corpus of interlinked HTML pages by importance. It estimates each page's rank two independent ways: `sample_pagerank` performs a Monte Carlo random walk of 10,000 samples that follows links with probability 0.85 (the damping factor) and otherwise jumps to a random page, while `iterate_pagerank` applies the PageRank formula repeatedly until the values converge within 0.001. A shared `transition_model` builds the probability distribution over the next page and handles dangling pages with no outgoing links by distributing rank equally across the whole corpus.
 
-### Code
+#### Code
 `pagerank.py`
 ```python
 import os
@@ -166,12 +215,12 @@ if __name__ == "__main__":
     main()
 ```
 
-## Heredity
+### Heredity — Practice
 
-### Description
+#### Description
 This program is a Bayesian network that infers the probability each person in a family carries 0, 1, or 2 copies of a gene and whether they exhibit an associated trait. It exhaustively enumerates every combination of who has the gene and who has the trait, computes the `joint_probability` of each scenario (using prior gene frequencies for people with no listed parents and inheritance-plus-mutation probabilities for children), accumulates those probabilities per person, and finally normalizes each distribution so it sums to 1. All priors and the 0.01 mutation rate live in the `PROBS` constant.
 
-### Code
+#### Code
 `heredity.py`
 ```python
 import csv
@@ -400,12 +449,12 @@ if __name__ == "__main__":
     main()
 ```
 
-## GIRank
+### GIRank — (P)
 
-### Description
+#### Description
 This is a custom assignment that applies a PageRank-style algorithm to a family tree, producing a "Genetic Influence Rank" for each ancestor. `build_family_graph` constructs bidirectional children/parent lookup tables from the tree, and `girank_scores` runs an iterative convergence treating each child as an outbound link and each leaf member as a dangling (sink) node whose score is redistributed equally to everyone. The result expresses how much genetic influence flows down through each branch of the family.
 
-### Code
+#### Code
 `girank.py`
 ```python
 """GIRank (Genetic Influence Rank) for a family tree."""
@@ -520,12 +569,38 @@ if __name__ == "__main__":
     main()
 ```
 
-## Crossword
+### Design Thinking (Solo Innovator): "How Might We" + user profiles — (P)
 
-### Description
+The modulebook task: formulate a "How Might We" question and create two fictional user
+profiles with their challenges and needs.
+
+> **TODO** — Add the "How Might We" question and the two user profiles.
+
+### Notes on the week's assignments
+
+- PageRank and Heredity both reason under uncertainty: PageRank distributes probability
+  across a link graph (with damping for random jumps and dangling nodes), while Heredity
+  is a Bayesian network combining priors, inheritance, and a mutation rate.
+- GIRank reuses the PageRank iteration idea on a family tree, treating leaf members as
+  sink nodes whose score is redistributed — output matches the expected reference values.
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the Week 4.2 lectures (uncertainty & probability).
+
+---
+
+## Week 4.3 — AI Optimization
+
+**Theme:** Optimization algorithms in AI (hill climbing, simulated annealing) and
+constraint satisfaction. Practice/portfolio assignment: Crossword.
+
+### Crossword — (P)
+
+#### Description
 This program generates crossword puzzles by modelling them as a constraint satisfaction problem. Each blank slot is a variable whose domain is the list of candidate words; `enforce_node_consistency` removes words of the wrong length, `ac3`/`revise` enforce arc consistency so overlapping cells agree on their shared letter, and `backtrack` performs a backtracking search to assign a word to every slot. The search is sped up with the minimum-remaining-values and degree heuristics for variable selection and the least-constraining-value heuristic for value ordering.
 
-### Code
+#### Code
 `generate.py`
 ```python
 import sys
@@ -785,12 +860,208 @@ if __name__ == "__main__":
     main()
 ```
 
-## Nim
+### Design Thinking (Solo Innovator): Brainstorm & select ideas — (P)
 
-### Description
+The modulebook task: brainstorm 10 AI solutions for the defined problem and select the
+3 best, describing why they have potential.
+
+> **TODO** — Add the 10 brainstormed ideas and the top-3 selection with reasoning.
+
+### Notes on the week's assignments
+
+- Crossword models word placement as a constraint-satisfaction problem: node
+  consistency (length), arc consistency via AC-3, and backtracking search with the
+  MRV/degree and least-constraining-value heuristics.
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the Week 4.3 lectures (optimization algorithms).
+
+---
+
+## Week 4.4 — AI Learning (Supervised/Unsupervised)
+
+**Theme:** Introduction to Machine Learning. Practice/portfolio assignment: Shopping.
+
+### Shopping — (P)
+
+#### Description
+This program trains a machine-learning model to predict whether an online shopper will complete a purchase. `load_data` reads a CSV of session data and converts each row into a numeric evidence vector (parsing months, visitor type, and weekend flags into integers), `train_model` fits a k-nearest-neighbour classifier with k=1, and `evaluate` reports the model's sensitivity (true positive rate) and specificity (true negative rate) on a held-out test set.
+
+#### Code
+`shopping.py`
+```python
+import csv
+import sys
+
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+TEST_SIZE = 0.4
+
+
+def main():
+
+    # Check command-line arguments
+    if len(sys.argv) != 2:
+        sys.exit("Usage: python shopping.py data")
+
+    # Load data from spreadsheet and split into train and test sets
+    evidence, labels = load_data(sys.argv[1])
+    X_train, X_test, y_train, y_test = train_test_split(
+        evidence, labels, test_size=TEST_SIZE
+    )
+
+    # Train model and make predictions
+    model = train_model(X_train, y_train)
+    predictions = model.predict(X_test)
+    sensitivity, specificity = evaluate(y_test, predictions)
+
+    # Print results
+    print(f"Correct: {(y_test == predictions).sum()}")
+    print(f"Incorrect: {(y_test != predictions).sum()}")
+    print(f"True Positive Rate: {100 * sensitivity:.2f}%")
+    print(f"True Negative Rate: {100 * specificity:.2f}%")
+
+
+# Maps month abbreviations from the CSV to 0-based numeric indices
+MONTHS = {"Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "June": 5,
+          "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11}
+
+
+def load_data(filename):
+    """
+    Load shopping data from a CSV file `filename` and convert into a list of
+    evidence lists and a list of labels. Return a tuple (evidence, labels).
+
+    evidence should be a list of lists, where each list contains the
+    following values, in order:
+        - Administrative, an integer
+        - Administrative_Duration, a floating point number
+        - Informational, an integer
+        - Informational_Duration, a floating point number
+        - ProductRelated, an integer
+        - ProductRelated_Duration, a floating point number
+        - BounceRates, a floating point number
+        - ExitRates, a floating point number
+        - PageValues, a floating point number
+        - SpecialDay, a floating point number
+        - Month, an index from 0 (January) to 11 (December)
+        - OperatingSystems, an integer
+        - Browser, an integer
+        - Region, an integer
+        - TrafficType, an integer
+        - VisitorType, an integer 0 (not returning) or 1 (returning)
+        - Weekend, an integer 0 (if false) or 1 (if true)
+
+    labels should be the corresponding list of labels, where each label
+    is 1 if Revenue is true, and 0 otherwise.
+    """
+    evidence = []
+    labels = []
+
+    with open(filename) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            # Convert each column to the required type; strings become numeric (0/1)
+            evidence.append([
+                int(row["Administrative"]),
+                float(row["Administrative_Duration"]),
+                int(row["Informational"]),
+                float(row["Informational_Duration"]),
+                int(row["ProductRelated"]),
+                float(row["ProductRelated_Duration"]),
+                float(row["BounceRates"]),
+                float(row["ExitRates"]),
+                float(row["PageValues"]),
+                float(row["SpecialDay"]),
+                MONTHS[row["Month"]],          # "Feb" -> 1, etc.
+                int(row["OperatingSystems"]),
+                int(row["Browser"]),
+                int(row["Region"]),
+                int(row["TrafficType"]),
+                1 if row["VisitorType"] == "Returning_Visitor" else 0,
+                1 if row["Weekend"] == "TRUE" else 0,
+            ])
+            # 1 if the user made a purchase, 0 otherwise
+            labels.append(1 if row["Revenue"] == "TRUE" else 0)
+
+    return evidence, labels
+
+
+def train_model(evidence, labels):
+    """
+    Given a list of evidence lists and a list of labels, return a
+    fitted k-nearest neighbor model (k=1) trained on the data.
+    """
+    # k=1 means each prediction is decided by its single nearest neighbour
+    model = KNeighborsClassifier(n_neighbors=1)
+    model.fit(evidence, labels)
+    return model
+
+
+def evaluate(labels, predictions):
+    """
+    Given a list of actual labels and a list of predicted labels,
+    return a tuple (sensitivity, specificity).
+
+    Assume each label is either a 1 (positive) or 0 (negative).
+
+    `sensitivity` should be a floating-point value from 0 to 1
+    representing the "true positive rate": the proportion of
+    actual positive labels that were accurately identified.
+
+    `specificity` should be a floating-point value from 0 to 1
+    representing the "true negative rate": the proportion of
+    actual negative labels that were accurately identified.
+    """
+    # Count how many positives/negatives were predicted correctly
+    true_positives = sum(1 for a, p in zip(labels, predictions) if a == 1 and p == 1)
+    actual_positives = sum(1 for a in labels if a == 1)
+    true_negatives = sum(1 for a, p in zip(labels, predictions) if a == 0 and p == 0)
+    actual_negatives = sum(1 for a in labels if a == 0)
+
+    # Divide correct counts by total to get rates (0.0 – 1.0)
+    sensitivity = true_positives / actual_positives
+    specificity = true_negatives / actual_negatives
+
+    return sensitivity, specificity
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### Design Thinking (Solo Innovator): Low-fidelity prototype — (P)
+
+The modulebook task: create a low-fidelity prototype (AI flow schema, wireframe, or a
+basic Python script) and test it with a fellow student, recording the feedback.
+
+> **TODO** — Add the low-fidelity prototype and the recorded feedback.
+
+### Notes on the week's assignments
+
+- Shopping is a supervised-learning classifier: categorical/temporal fields are encoded
+  numerically in `load_data`, a k-NN model (k=1) is trained, and performance is reported
+  as sensitivity and specificity rather than raw accuracy (the classes are imbalanced).
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the Week 4.4 lectures (machine learning intro).
+
+---
+
+## Week 4.5 — AI Learning (Reinforcement Learning)
+
+**Theme:** Reinforcement learning and improving AI from feedback. Practice/portfolio
+assignment: Nim. Begin work on the project presentation.
+
+### Nim — (P)
+
+#### Description
 This program teaches an AI to play the game of Nim using reinforcement learning. The `NimAI` class maintains a Q-learning table mapping `(state, action)` pairs to values, updating them after every move with the standard temporal-difference rule and balancing exploration versus exploitation through an epsilon-greedy `choose_action`. After training itself over many self-play games, the AI plays optimally against a human opponent.
 
-### Code
+#### Code
 `nim.py`
 ```python
 import math
@@ -1073,164 +1344,32 @@ def play(ai, human_player=None):
             return
 ```
 
-## Shopping
+### Notes on the week's assignments
 
-### Description
-This program trains a machine-learning model to predict whether an online shopper will complete a purchase. `load_data` reads a CSV of session data and converts each row into a numeric evidence vector (parsing months, visitor type, and weekend flags into integers), `train_model` fits a k-nearest-neighbour classifier with k=1, and `evaluate` reports the model's sensitivity (true positive rate) and specificity (true negative rate) on a held-out test set.
+- Nim uses Q-learning (reinforcement learning): `(state, action)` Q-values are updated
+  with a temporal-difference rule, and an epsilon-greedy policy balances exploration vs.
+  exploitation. After self-play training the agent plays optimally against a human.
 
-### Code
-`shopping.py`
-```python
-import csv
-import sys
+### Results & evaluation of teaching activities
 
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
+> **TODO** — Reflect on the Week 4.5 lectures (RL & improving AI from feedback).
 
-TEST_SIZE = 0.4
+---
 
+## Week 4.6 — AI Neural Networks
 
-def main():
+**Theme:** Deep neural networks and backpropagation. Practice/portfolio assignment:
+Traffic. Project presentation due this week.
 
-    # Check command-line arguments
-    if len(sys.argv) != 2:
-        sys.exit("Usage: python shopping.py data")
+### Traffic — (P)
 
-    # Load data from spreadsheet and split into train and test sets
-    evidence, labels = load_data(sys.argv[1])
-    X_train, X_test, y_train, y_test = train_test_split(
-        evidence, labels, test_size=TEST_SIZE
-    )
-
-    # Train model and make predictions
-    model = train_model(X_train, y_train)
-    predictions = model.predict(X_test)
-    sensitivity, specificity = evaluate(y_test, predictions)
-
-    # Print results
-    print(f"Correct: {(y_test == predictions).sum()}")
-    print(f"Incorrect: {(y_test != predictions).sum()}")
-    print(f"True Positive Rate: {100 * sensitivity:.2f}%")
-    print(f"True Negative Rate: {100 * specificity:.2f}%")
-
-
-# Maps month abbreviations from the CSV to 0-based numeric indices
-MONTHS = {"Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "June": 5,
-          "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11}
-
-
-def load_data(filename):
-    """
-    Load shopping data from a CSV file `filename` and convert into a list of
-    evidence lists and a list of labels. Return a tuple (evidence, labels).
-
-    evidence should be a list of lists, where each list contains the
-    following values, in order:
-        - Administrative, an integer
-        - Administrative_Duration, a floating point number
-        - Informational, an integer
-        - Informational_Duration, a floating point number
-        - ProductRelated, an integer
-        - ProductRelated_Duration, a floating point number
-        - BounceRates, a floating point number
-        - ExitRates, a floating point number
-        - PageValues, a floating point number
-        - SpecialDay, a floating point number
-        - Month, an index from 0 (January) to 11 (December)
-        - OperatingSystems, an integer
-        - Browser, an integer
-        - Region, an integer
-        - TrafficType, an integer
-        - VisitorType, an integer 0 (not returning) or 1 (returning)
-        - Weekend, an integer 0 (if false) or 1 (if true)
-
-    labels should be the corresponding list of labels, where each label
-    is 1 if Revenue is true, and 0 otherwise.
-    """
-    evidence = []
-    labels = []
-
-    with open(filename) as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            # Convert each column to the required type; strings become numeric (0/1)
-            evidence.append([
-                int(row["Administrative"]),
-                float(row["Administrative_Duration"]),
-                int(row["Informational"]),
-                float(row["Informational_Duration"]),
-                int(row["ProductRelated"]),
-                float(row["ProductRelated_Duration"]),
-                float(row["BounceRates"]),
-                float(row["ExitRates"]),
-                float(row["PageValues"]),
-                float(row["SpecialDay"]),
-                MONTHS[row["Month"]],          # "Feb" -> 1, etc.
-                int(row["OperatingSystems"]),
-                int(row["Browser"]),
-                int(row["Region"]),
-                int(row["TrafficType"]),
-                1 if row["VisitorType"] == "Returning_Visitor" else 0,
-                1 if row["Weekend"] == "TRUE" else 0,
-            ])
-            # 1 if the user made a purchase, 0 otherwise
-            labels.append(1 if row["Revenue"] == "TRUE" else 0)
-
-    return evidence, labels
-
-
-def train_model(evidence, labels):
-    """
-    Given a list of evidence lists and a list of labels, return a
-    fitted k-nearest neighbor model (k=1) trained on the data.
-    """
-    # k=1 means each prediction is decided by its single nearest neighbour
-    model = KNeighborsClassifier(n_neighbors=1)
-    model.fit(evidence, labels)
-    return model
-
-
-def evaluate(labels, predictions):
-    """
-    Given a list of actual labels and a list of predicted labels,
-    return a tuple (sensitivity, specificity).
-
-    Assume each label is either a 1 (positive) or 0 (negative).
-
-    `sensitivity` should be a floating-point value from 0 to 1
-    representing the "true positive rate": the proportion of
-    actual positive labels that were accurately identified.
-
-    `specificity` should be a floating-point value from 0 to 1
-    representing the "true negative rate": the proportion of
-    actual negative labels that were accurately identified.
-    """
-    # Count how many positives/negatives were predicted correctly
-    true_positives = sum(1 for a, p in zip(labels, predictions) if a == 1 and p == 1)
-    actual_positives = sum(1 for a in labels if a == 1)
-    true_negatives = sum(1 for a, p in zip(labels, predictions) if a == 0 and p == 0)
-    actual_negatives = sum(1 for a in labels if a == 0)
-
-    # Divide correct counts by total to get rates (0.0 – 1.0)
-    sensitivity = true_positives / actual_positives
-    specificity = true_negatives / actual_negatives
-
-    return sensitivity, specificity
-
-
-if __name__ == "__main__":
-    main()
-```
-
-## Traffic
-
-### Description
+#### Description
 This program trains a convolutional neural network with TensorFlow to recognize German traffic signs from the GTSRB dataset. `load_data` reads every image with OpenCV and resizes it to a uniform 30×30×3 array, and `get_model` builds and compiles the CNN that classifies each image into one of 43 sign categories. The data is split 60/40 into training and testing sets, the model trains for 10 epochs, and it can optionally be saved to disk.
 
-### Experimentation
+#### Experimentation
 The final architecture uses two convolution-plus-pooling blocks (`Conv2D` with 32 then 64 filters of size 3×3, each followed by 2×2 `MaxPooling2D`) to learn low- and high-level visual features, then flattens the result into a dense hidden layer of 128 units. A `Dropout(0.5)` layer was added before the output to combat overfitting — without it the model fit the training set well but generalized worse on the test split. The output layer is a 43-unit softmax (one probability per category), compiled with the `adam` optimizer and `categorical_crossentropy` loss. Stacking two convolutional blocks rather than one noticeably improved test accuracy, while adding further dense layers gave little benefit for the extra training time.
 
-### Code
+#### Code
 `traffic.py`
 ```python
 import cv2
@@ -1345,12 +1484,42 @@ if __name__ == "__main__":
     main()
 ```
 
-## Parser
+### Design Thinking (Solo Innovator): Working prototype in code — (P)
 
-### Description
+The modulebook task: work out the prototype in code (e.g. a chatbot, image recognition,
+or recommender system) using an AI framework such as the OpenAI API, TensorFlow, or
+Scikit-learn.
+
+> **TODO** — Add the coded prototype for the Solo Innovator project.
+
+### Presentation of your project — (P)
+
+> **TODO** — Add the project presentation (slides / link).
+
+### Notes on the week's assignments
+
+- Traffic is a convolutional neural network (CNN) for 43-class image classification.
+  Two Conv2D+MaxPool blocks extract visual features; a `Dropout(0.5)` layer before the
+  softmax output measurably reduced overfitting (see *Experimentation* above).
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the Week 4.6 lectures (neural networks & backpropagation).
+
+---
+
+## Week 4.7 — AI Language
+
+**Theme:** Natural Language Processing (NLP) & attention mechanisms. Practice
+assignments Parser and Attention; the "Your Own AI Project" deliverable; project pitch;
+and the Professional Skills reflection report.
+
+### Parser — Practice
+
+#### Description
 This program parses English sentences into syntax trees using a context-free grammar with NLTK. The `TERMINALS` and `NONTERMINALS` grammar rules define how sentences decompose into noun phrases, verb phrases, prepositional phrases, and adjective phrases; `preprocess` lowercases and tokenizes the input while dropping non-alphabetic tokens, and `np_chunk` extracts the "noun phrase chunks" — the smallest NP subtrees that contain no nested noun phrases. Each successful parse is pretty-printed alongside its noun phrase chunks.
 
-### Code
+#### Code
 `parser.py`
 ```python
 import nltk
@@ -1446,12 +1615,12 @@ if __name__ == "__main__":
     main()
 ```
 
-## Attention
+### Attention — Practice
 
-### Description
+#### Description
 This program uses a pre-trained BERT masked-language model to predict the word hidden behind a `[MASK]` token and to visualize the model's self-attention. It tokenizes the input, finds the masked position with `get_mask_token_index`, runs BERT to obtain the top K predictions, and then `visualize_attentions` produces a grayscale diagram for every attention head in every layer — each cell shaded by how strongly one token attends to another. The accompanying analysis interprets what specific attention heads appear to have learned.
 
-### Code
+#### Code
 `mask.py`
 ```python
 import sys
@@ -1598,9 +1767,9 @@ if __name__ == "__main__":
     main()
 ```
 
-### Analysis
+#### Analysis
 
-#### Layer 2, Head 1
+##### Layer 2, Head 1
 
 This head consistently attends from each token forward to the immediately following token, forming a near-diagonal stripe one step to the right of the main diagonal. This captures local sequential structure — the model is effectively "peeking ahead" one position, which helps represent the flow of a sentence left-to-right.
 
@@ -1608,10 +1777,53 @@ Example Sentences:
 - "The cat [MASK] on the mat." — Each token's attention is concentrated on the next token, so "cat" strongly attends to [MASK], [MASK] to "on", etc.
 - "She quickly [MASK] the door and left." — The same forward-shift pattern appears; "quickly" attends strongly to [MASK], and [MASK] to "the".
 
-#### Layer 7, Head 6
+##### Layer 7, Head 6
 
 This head shows strong attention from almost every token back to the [CLS] special token (position 0). [CLS] acts as a global summary vector in BERT, and this head appears dedicated to routing per-token information into that summary. The pattern is visible as a bright first column regardless of sentence content.
 
 Example Sentences:
 - "The scientist [MASK] the experiment carefully." — All content tokens show high attention weight on [CLS], with only weak attention elsewhere.
 - "We [MASK] the problem together last night." — Again, regardless of which word is masked, every token's attention is dominated by the [CLS] position, indicating this head gathers global sentence context rather than tracking local relationships.
+
+### Your Own AI Project — (P)
+
+> **TODO** — Document the "Your Own AI Project" deliverable and the 10-minute pitch.
+
+### Professional skills: Reflection report — (P)
+
+The modulebook task: write a reflection report — *What worked well? What would you do
+differently?* (See also the Professional Skills portfolio.)
+
+> **TODO** — Add the reflection report.
+
+### Notes on the week's assignments
+
+- Parser builds a context-free grammar in NLTK, parses sentences into syntax trees, and
+  extracts noun-phrase chunks (smallest NP subtrees).
+- Attention uses a pre-trained BERT masked-language model: it predicts the masked token
+  and visualizes each layer/head's self-attention. The analysis interprets two heads
+  (local forward-shift; global routing to `[CLS]`).
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the Week 4.7 lectures (NLP & attention).
+
+---
+
+## Week 4.8 — Presentation & Demonstration
+
+**Theme:** Finalize and refine the portfolio; final project demonstration; prepare for
+the criterion-based oral portfolio assessment (Week T4a).
+
+### Final portfolio review — (P)
+
+> **TODO** — Confirm all weekly assignments and the final product meet the required
+> standards; address any feedback received.
+
+### Notes on the week's assignments
+
+> **TODO** — Summary of the final-week activities.
+
+### Results & evaluation of teaching activities
+
+> **TODO** — Reflect on the Week 4.8 activities.
