@@ -3,7 +3,7 @@
 - Name: Peter Kapsiar
 - Student ID: 5486866
 - Repository: https://github.com/pop9459/P4-ComputerScience
-- Module: TICS Semester 2 · Period 4 — *AI Odyssey: AI2nnovate — Transforming Tomorrow*
+- Module: TICS Semester 2 · Period 4 - *AI Odyssey: AI2nnovate - Transforming Tomorrow*
 - Course base: Harvard CS50 *Introduction to AI with Python* (https://cs50.harvard.edu/ai)
 
 This portfolio is structured **week by week** following the modulebook's COMPUTER track
@@ -12,28 +12,28 @@ programming code, notes on the week's assignments, and an evaluation of the teac
 activities.
 
 **Legend**
-- **(P)** — explicit portfolio deliverable required by the modulebook schedule.
-- **Practice** — CS50 practice assignment for the week's theme.
-- **Optional** — not required for assessment.
-- `> **TODO**` — placeholder for work not yet completed / not yet documented.
+- **(P)** - explicit portfolio deliverable required by the modulebook schedule.
+- **Practice** - CS50 practice assignment for the week's theme.
+- **Optional** - not required for assessment.
+- `> **TODO**` - placeholder for work not yet completed / not yet documented.
 
 ---
 
-## Week 4.1 — Planning & Setup
+## Week 4.1 - Planning & Setup
 
 **Theme:** Planning & Setup. Kick-off, treasure hunt, and the start of the Solo
 Innovator (Design Thinking) challenge.
 
-### Treasure hunt — (P)
+### Treasure hunt - (P)
 
-> **TODO** — Document the treasure-hunt result/evidence.
+> **TODO** - Document the treasure-hunt result/evidence.
 
-### Design Thinking (Solo Innovator): Identifying current AI challenges — (P)
+### Design Thinking (Solo Innovator): Identifying current AI challenges - (P)
 
 The modulebook task: interview 3 people about their experiences with AI and write a
 short analysis identifying current challenges in AI.
 
-> **TODO** — Add the 3 interviews and the short analysis of current AI challenges.
+> **TODO** - Add the 3 interviews and the short analysis of current AI challenges.
 
 ### Notes on the week's assignments
 
@@ -42,17 +42,17 @@ short analysis identifying current challenges in AI.
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the kick-off / Week 4.1 teaching activities.
+> **TODO** - Reflect on the kick-off / Week 4.1 teaching activities.
 
 ---
 
-## Week 4.2 — AI Uncertainty
+## Week 4.2 - AI Uncertainty
 
 **Theme:** How AI handles uncertainty and probability. Practice assignments PageRank
 and Heredity; the custom **GIRank** portfolio assignment; and the Design Thinking
 "How Might We" step.
 
-### PageRank — Practice
+### PageRank - Practice
 
 #### Description
 This program implements Google's PageRank algorithm to rank a corpus of interlinked HTML pages by importance. It estimates each page's rank two independent ways: `sample_pagerank` performs a Monte Carlo random walk of 10,000 samples that follows links with probability 0.85 (the damping factor) and otherwise jumps to a random page, while `iterate_pagerank` applies the PageRank formula repeatedly until the values converge within 0.001. A shared `transition_model` builds the probability distribution over the next page and handles dangling pages with no outgoing links by distributing rank equally across the whole corpus.
@@ -215,7 +215,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### Heredity — Practice
+### Heredity - Practice
 
 #### Description
 This program is a Bayesian network that infers the probability each person in a family carries 0, 1, or 2 copies of a gene and whether they exhibit an associated trait. It exhaustively enumerates every combination of who has the gene and who has the trait, computes the `joint_probability` of each scenario (using prior gene frequencies for people with no listed parents and inheritance-plus-mutation probabilities for children), accumulates those probabilities per person, and finally normalizes each distribution so it sums to 1. All priors and the 0.01 mutation rate live in the `PROBS` constant.
@@ -449,7 +449,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### GIRank — (P)
+### GIRank - (P)
 
 #### Description
 This is a custom assignment that applies a PageRank-style algorithm to a family tree, producing a "Genetic Influence Rank" for each ancestor. `build_family_graph` constructs bidirectional children/parent lookup tables from the tree, and `girank_scores` runs an iterative convergence treating each child as an outbound link and each leaf member as a dangling (sink) node whose score is redistributed equally to everyone. The result expresses how much genetic influence flows down through each branch of the family.
@@ -569,12 +569,12 @@ if __name__ == "__main__":
     main()
 ```
 
-### Design Thinking (Solo Innovator): "How Might We" + user profiles — (P)
+### Design Thinking (Solo Innovator): "How Might We" + user profiles - (P)
 
 The modulebook task: formulate a "How Might We" question and create two fictional user
 profiles with their challenges and needs.
 
-> **TODO** — Add the "How Might We" question and the two user profiles.
+> **TODO** - Add the "How Might We" question and the two user profiles.
 
 ### Notes on the week's assignments
 
@@ -582,20 +582,20 @@ profiles with their challenges and needs.
   across a link graph (with damping for random jumps and dangling nodes), while Heredity
   is a Bayesian network combining priors, inheritance, and a mutation rate.
 - GIRank reuses the PageRank iteration idea on a family tree, treating leaf members as
-  sink nodes whose score is redistributed — output matches the expected reference values.
+  sink nodes whose score is redistributed - output matches the expected reference values.
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.2 lectures (uncertainty & probability).
+> **TODO** - Reflect on the Week 4.2 lectures (uncertainty & probability).
 
 ---
 
-## Week 4.3 — AI Optimization
+## Week 4.3 - AI Optimization
 
 **Theme:** Optimization algorithms in AI (hill climbing, simulated annealing) and
 constraint satisfaction. Practice/portfolio assignment: Crossword.
 
-### Crossword — (P)
+### Crossword - (P)
 
 #### Description
 This program generates crossword puzzles by modelling them as a constraint satisfaction problem. Each blank slot is a variable whose domain is the list of candidate words; `enforce_node_consistency` removes words of the wrong length, `ac3`/`revise` enforce arc consistency so overlapping cells agree on their shared letter, and `backtrack` performs a backtracking search to assign a word to every slot. The search is sped up with the minimum-remaining-values and degree heuristics for variable selection and the least-constraining-value heuristic for value ordering.
@@ -744,7 +744,7 @@ class CrosswordCreator():
             x, y = queue.pop(0)
             if self.revise(x, y):
                 if not self.domains[x]:
-                    return False  # Domain wiped out — no solution possible.
+                    return False  # Domain wiped out - no solution possible.
                 # x's domain shrank, so re-check all of x's other neighbors.
                 for z in self.crossword.neighbors(x) - {y}:
                     queue.append((z, x))
@@ -860,12 +860,12 @@ if __name__ == "__main__":
     main()
 ```
 
-### Design Thinking (Solo Innovator): Brainstorm & select ideas — (P)
+### Design Thinking (Solo Innovator): Brainstorm & select ideas - (P)
 
 The modulebook task: brainstorm 10 AI solutions for the defined problem and select the
 3 best, describing why they have potential.
 
-> **TODO** — Add the 10 brainstormed ideas and the top-3 selection with reasoning.
+> **TODO** - Add the 10 brainstormed ideas and the top-3 selection with reasoning.
 
 ### Notes on the week's assignments
 
@@ -875,15 +875,15 @@ The modulebook task: brainstorm 10 AI solutions for the defined problem and sele
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.3 lectures (optimization algorithms).
+> **TODO** - Reflect on the Week 4.3 lectures (optimization algorithms).
 
 ---
 
-## Week 4.4 — AI Learning (Supervised/Unsupervised)
+## Week 4.4 - AI Learning (Supervised/Unsupervised)
 
 **Theme:** Introduction to Machine Learning. Practice/portfolio assignment: Shopping.
 
-### Shopping — (P)
+### Shopping - (P)
 
 #### Description
 This program trains a machine-learning model to predict whether an online shopper will complete a purchase. `load_data` reads a CSV of session data and converts each row into a numeric evidence vector (parsing months, visitor type, and weekend flags into integers), `train_model` fits a k-nearest-neighbour classifier with k=1, and `evaluate` reports the model's sensitivity (true positive rate) and specificity (true negative rate) on a held-out test set.
@@ -1032,12 +1032,12 @@ if __name__ == "__main__":
     main()
 ```
 
-### Design Thinking (Solo Innovator): Low-fidelity prototype — (P)
+### Design Thinking (Solo Innovator): Low-fidelity prototype - (P)
 
 The modulebook task: create a low-fidelity prototype (AI flow schema, wireframe, or a
 basic Python script) and test it with a fellow student, recording the feedback.
 
-> **TODO** — Add the low-fidelity prototype and the recorded feedback.
+> **TODO** - Add the low-fidelity prototype and the recorded feedback.
 
 ### Notes on the week's assignments
 
@@ -1047,16 +1047,16 @@ basic Python script) and test it with a fellow student, recording the feedback.
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.4 lectures (machine learning intro).
+> **TODO** - Reflect on the Week 4.4 lectures (machine learning intro).
 
 ---
 
-## Week 4.5 — AI Learning (Reinforcement Learning)
+## Week 4.5 - AI Learning (Reinforcement Learning)
 
 **Theme:** Reinforcement learning and improving AI from feedback. Practice/portfolio
 assignment: Nim. Begin work on the project presentation.
 
-### Nim — (P)
+### Nim - (P)
 
 #### Description
 This program teaches an AI to play the game of Nim using reinforcement learning. The `NimAI` class maintains a Q-learning table mapping `(state, action)` pairs to values, updating them after every move with the standard temporal-difference rule and balancing exploration versus exploitation through an epsilon-greedy `choose_action`. After training itself over many self-play games, the AI plays optimally against a human opponent.
@@ -1352,22 +1352,22 @@ def play(ai, human_player=None):
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.5 lectures (RL & improving AI from feedback).
+> **TODO** - Reflect on the Week 4.5 lectures (RL & improving AI from feedback).
 
 ---
 
-## Week 4.6 — AI Neural Networks
+## Week 4.6 - AI Neural Networks
 
 **Theme:** Deep neural networks and backpropagation. Practice/portfolio assignment:
 Traffic. Project presentation due this week.
 
-### Traffic — (P)
+### Traffic - (P)
 
 #### Description
 This program trains a convolutional neural network with TensorFlow to recognize German traffic signs from the GTSRB dataset. `load_data` reads every image with OpenCV and resizes it to a uniform 30×30×3 array, and `get_model` builds and compiles the CNN that classifies each image into one of 43 sign categories. The data is split 60/40 into training and testing sets, the model trains for 10 epochs, and it can optionally be saved to disk.
 
 #### Experimentation
-The final architecture uses two convolution-plus-pooling blocks (`Conv2D` with 32 then 64 filters of size 3×3, each followed by 2×2 `MaxPooling2D`) to learn low- and high-level visual features, then flattens the result into a dense hidden layer of 128 units. A `Dropout(0.5)` layer was added before the output to combat overfitting — without it the model fit the training set well but generalized worse on the test split. The output layer is a 43-unit softmax (one probability per category), compiled with the `adam` optimizer and `categorical_crossentropy` loss. Stacking two convolutional blocks rather than one noticeably improved test accuracy, while adding further dense layers gave little benefit for the extra training time.
+The final architecture uses two convolution-plus-pooling blocks (`Conv2D` with 32 then 64 filters of size 3×3, each followed by 2×2 `MaxPooling2D`) to learn low- and high-level visual features, then flattens the result into a dense hidden layer of 128 units. A `Dropout(0.5)` layer was added before the output to combat overfitting - without it the model fit the training set well but generalized worse on the test split. The output layer is a 43-unit softmax (one probability per category), compiled with the `adam` optimizer and `categorical_crossentropy` loss. Stacking two convolutional blocks rather than one noticeably improved test accuracy, while adding further dense layers gave little benefit for the extra training time.
 
 #### Code
 `traffic.py`
@@ -1484,17 +1484,17 @@ if __name__ == "__main__":
     main()
 ```
 
-### Design Thinking (Solo Innovator): Working prototype in code — (P)
+### Design Thinking (Solo Innovator): Working prototype in code - (P)
 
 The modulebook task: work out the prototype in code (e.g. a chatbot, image recognition,
 or recommender system) using an AI framework such as the OpenAI API, TensorFlow, or
 Scikit-learn.
 
-> **TODO** — Add the coded prototype for the Solo Innovator project.
+> **TODO** - Add the coded prototype for the Solo Innovator project.
 
-### Presentation of your project — (P)
+### Presentation of your project - (P)
 
-> **TODO** — Add the project presentation (slides / link).
+> **TODO** - Add the project presentation (slides / link).
 
 ### Notes on the week's assignments
 
@@ -1504,20 +1504,20 @@ Scikit-learn.
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.6 lectures (neural networks & backpropagation).
+> **TODO** - Reflect on the Week 4.6 lectures (neural networks & backpropagation).
 
 ---
 
-## Week 4.7 — AI Language
+## Week 4.7 - AI Language
 
 **Theme:** Natural Language Processing (NLP) & attention mechanisms. Practice
 assignments Parser and Attention; the "Your Own AI Project" deliverable; project pitch;
 and the Professional Skills reflection report.
 
-### Parser — Practice
+### Parser - Practice
 
 #### Description
-This program parses English sentences into syntax trees using a context-free grammar with NLTK. The `TERMINALS` and `NONTERMINALS` grammar rules define how sentences decompose into noun phrases, verb phrases, prepositional phrases, and adjective phrases; `preprocess` lowercases and tokenizes the input while dropping non-alphabetic tokens, and `np_chunk` extracts the "noun phrase chunks" — the smallest NP subtrees that contain no nested noun phrases. Each successful parse is pretty-printed alongside its noun phrase chunks.
+This program parses English sentences into syntax trees using a context-free grammar with NLTK. The `TERMINALS` and `NONTERMINALS` grammar rules define how sentences decompose into noun phrases, verb phrases, prepositional phrases, and adjective phrases; `preprocess` lowercases and tokenizes the input while dropping non-alphabetic tokens, and `np_chunk` extracts the "noun phrase chunks" - the smallest NP subtrees that contain no nested noun phrases. Each successful parse is pretty-printed alongside its noun phrase chunks.
 
 #### Code
 `parser.py`
@@ -1615,10 +1615,10 @@ if __name__ == "__main__":
     main()
 ```
 
-### Attention — Practice
+### Attention - Practice
 
 #### Description
-This program uses a pre-trained BERT masked-language model to predict the word hidden behind a `[MASK]` token and to visualize the model's self-attention. It tokenizes the input, finds the masked position with `get_mask_token_index`, runs BERT to obtain the top K predictions, and then `visualize_attentions` produces a grayscale diagram for every attention head in every layer — each cell shaded by how strongly one token attends to another. The accompanying analysis interprets what specific attention heads appear to have learned.
+This program uses a pre-trained BERT masked-language model to predict the word hidden behind a `[MASK]` token and to visualize the model's self-attention. It tokenizes the input, finds the masked position with `get_mask_token_index`, runs BERT to obtain the top K predictions, and then `visualize_attentions` produces a grayscale diagram for every attention head in every layer - each cell shaded by how strongly one token attends to another. The accompanying analysis interprets what specific attention heads appear to have learned.
 
 #### Code
 `mask.py`
@@ -1771,30 +1771,30 @@ if __name__ == "__main__":
 
 ##### Layer 2, Head 1
 
-This head consistently attends from each token forward to the immediately following token, forming a near-diagonal stripe one step to the right of the main diagonal. This captures local sequential structure — the model is effectively "peeking ahead" one position, which helps represent the flow of a sentence left-to-right.
+This head consistently attends from each token forward to the immediately following token, forming a near-diagonal stripe one step to the right of the main diagonal. This captures local sequential structure - the model is effectively "peeking ahead" one position, which helps represent the flow of a sentence left-to-right.
 
 Example Sentences:
-- "The cat [MASK] on the mat." — Each token's attention is concentrated on the next token, so "cat" strongly attends to [MASK], [MASK] to "on", etc.
-- "She quickly [MASK] the door and left." — The same forward-shift pattern appears; "quickly" attends strongly to [MASK], and [MASK] to "the".
+- "The cat [MASK] on the mat." - Each token's attention is concentrated on the next token, so "cat" strongly attends to [MASK], [MASK] to "on", etc.
+- "She quickly [MASK] the door and left." - The same forward-shift pattern appears; "quickly" attends strongly to [MASK], and [MASK] to "the".
 
 ##### Layer 7, Head 6
 
 This head shows strong attention from almost every token back to the [CLS] special token (position 0). [CLS] acts as a global summary vector in BERT, and this head appears dedicated to routing per-token information into that summary. The pattern is visible as a bright first column regardless of sentence content.
 
 Example Sentences:
-- "The scientist [MASK] the experiment carefully." — All content tokens show high attention weight on [CLS], with only weak attention elsewhere.
-- "We [MASK] the problem together last night." — Again, regardless of which word is masked, every token's attention is dominated by the [CLS] position, indicating this head gathers global sentence context rather than tracking local relationships.
+- "The scientist [MASK] the experiment carefully." - All content tokens show high attention weight on [CLS], with only weak attention elsewhere.
+- "We [MASK] the problem together last night." - Again, regardless of which word is masked, every token's attention is dominated by the [CLS] position, indicating this head gathers global sentence context rather than tracking local relationships.
 
-### Your Own AI Project — (P)
+### Your Own AI Project - (P)
 
-> **TODO** — Document the "Your Own AI Project" deliverable and the 10-minute pitch.
+> **TODO** - Document the "Your Own AI Project" deliverable and the 10-minute pitch.
 
-### Professional skills: Reflection report — (P)
+### Professional skills: Reflection report - (P)
 
-The modulebook task: write a reflection report — *What worked well? What would you do
+The modulebook task: write a reflection report - *What worked well? What would you do
 differently?* (See also the Professional Skills portfolio.)
 
-> **TODO** — Add the reflection report.
+> **TODO** - Add the reflection report.
 
 ### Notes on the week's assignments
 
@@ -1806,24 +1806,24 @@ differently?* (See also the Professional Skills portfolio.)
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.7 lectures (NLP & attention).
+> **TODO** - Reflect on the Week 4.7 lectures (NLP & attention).
 
 ---
 
-## Week 4.8 — Presentation & Demonstration
+## Week 4.8 - Presentation & Demonstration
 
 **Theme:** Finalize and refine the portfolio; final project demonstration; prepare for
 the criterion-based oral portfolio assessment (Week T4a).
 
-### Final portfolio review — (P)
+### Final portfolio review - (P)
 
-> **TODO** — Confirm all weekly assignments and the final product meet the required
+> **TODO** - Confirm all weekly assignments and the final product meet the required
 > standards; address any feedback received.
 
 ### Notes on the week's assignments
 
-> **TODO** — Summary of the final-week activities.
+> **TODO** - Summary of the final-week activities.
 
 ### Results & evaluation of teaching activities
 
-> **TODO** — Reflect on the Week 4.8 activities.
+> **TODO** - Reflect on the Week 4.8 activities.
