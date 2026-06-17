@@ -7,9 +7,8 @@
 - Course base: Harvard CS50 *Introduction to AI with Python* (https://cs50.harvard.edu/ai)
 
 This portfolio is structured **week by week** following the modulebook's COMPUTER track
-(weeks 4.1–4.8). Per modulebook §5, each week documents: completed assignments,
-programming code, notes on the week's assignments, and an evaluation of the teaching
-activities.
+(weeks 4.1–4.8). Per modulebook §5, each week documents the completed assignments,
+programming code, and notes on the week's assignments.
 
 **Legend**
 - **(P)** - explicit portfolio deliverable required by the modulebook schedule.
@@ -21,36 +20,19 @@ activities.
 
 ## Week 4.1 - Planning & Setup
 
-**Theme:** Planning & Setup. Kick-off, treasure hunt, and the start of the Solo
-Innovator (Design Thinking) challenge.
-
-### Treasure hunt - (P)
-
-> **TODO** - Document the treasure-hunt result/evidence.
-
-### Design Thinking (Solo Innovator): Identifying current AI challenges - (P)
-
-The modulebook task: interview 3 people about their experiences with AI and write a
-short analysis identifying current challenges in AI.
-
-> **TODO** - Add the 3 interviews and the short analysis of current AI challenges.
+**Theme:** Planning & Setup. Kick-off and development environment setup.
 
 ### Notes on the week's assignments
 
 - Set up the development environment for the period: Python virtual environment,
   CS50 AI project dependencies, and the Git repository (`P4-ComputerScience`).
 
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the kick-off / Week 4.1 teaching activities.
-
 ---
 
 ## Week 4.2 - AI Uncertainty
 
 **Theme:** How AI handles uncertainty and probability. Practice assignments PageRank
-and Heredity; the custom **GIRank** portfolio assignment; and the Design Thinking
-"How Might We" step.
+and Heredity, and the custom **GIRank** portfolio assignment.
 
 ### PageRank - Practice
 
@@ -70,7 +52,6 @@ DAMPING = 0.85
 # Number of random walks for sampling method
 SAMPLES = 10000
 
-
 def main():
     if len(sys.argv) != 2:
         sys.exit("Usage: python pagerank.py corpus")
@@ -83,7 +64,6 @@ def main():
     print(f"PageRank Results from Iteration")
     for page in sorted(ranks):
         print(f"  {page}: {ranks[page]:.4f}")
-
 
 def crawl(directory):
     """
@@ -107,7 +87,6 @@ def crawl(directory):
         pages[filename] = set(link for link in pages[filename] if link in pages)
 
     return pages
-
 
 def transition_model(corpus, page, damping_factor):
     """
@@ -138,7 +117,6 @@ def transition_model(corpus, page, damping_factor):
 
     return distribution
 
-
 def sample_pagerank(corpus, damping_factor, n):
     """
     Return PageRank values for each page by sampling `n` pages
@@ -164,7 +142,6 @@ def sample_pagerank(corpus, damping_factor, n):
 
     # Convert visit counts to probabilities
     return {page: counts[page] / n for page in pages}
-
 
 def iterate_pagerank(corpus, damping_factor):
     """
@@ -209,7 +186,6 @@ def iterate_pagerank(corpus, damping_factor):
             break
 
     return ranks
-
 
 if __name__ == "__main__":
     main()
@@ -260,7 +236,6 @@ PROBS = {
     # Mutation probability
     "mutation": 0.01
 }
-
 
 def main():
 
@@ -318,7 +293,6 @@ def main():
                 p = probabilities[person][field][value]
                 print(f"    {value}: {p:.4f}")
 
-
 def load_data(filename):
     """
     Load gene and trait data from a file into a dictionary.
@@ -340,7 +314,6 @@ def load_data(filename):
             }
     return data
 
-
 def powerset(s):
     """
     Return a list of all possible subsets of set s.
@@ -351,7 +324,6 @@ def powerset(s):
             itertools.combinations(s, r) for r in range(len(s) + 1)
         )
     ]
-
 
 def joint_probability(people, one_gene, two_genes, have_trait):
     """
@@ -409,7 +381,6 @@ def joint_probability(people, one_gene, two_genes, have_trait):
 
     return p
 
-
 def update(probabilities, one_gene, two_genes, have_trait, p):
     """
     Add to `probabilities` a new joint probability `p`.
@@ -431,7 +402,6 @@ def update(probabilities, one_gene, two_genes, have_trait, p):
         else:
             probabilities[person]["trait"][False] += p
 
-
 def normalize(probabilities):
     """
     Update `probabilities` such that each probability distribution
@@ -443,7 +413,6 @@ def normalize(probabilities):
             total = sum(probabilities[person][field].values())
             for value in probabilities[person][field]:
                 probabilities[person][field][value] /= total
-
 
 if __name__ == "__main__":
     main()
@@ -483,7 +452,6 @@ Frank: 0.0850
 Zara: 0.0530
 """
 
-
 def build_family_graph(
     family_tree: Mapping[str, Iterable[str]]
 ) -> tuple[dict[str, set[str]], dict[str, set[str]]]:
@@ -501,7 +469,6 @@ def build_family_graph(
             parents_map[child].add(parent)
 
     return children_map, parents_map
-
 
 def girank_scores(
     children_map: Mapping[str, set[str]],
@@ -548,11 +515,9 @@ def girank_scores(
 
     return scores
 
-
 def ancestor_nodes(family_tree: Mapping[str, Iterable[str]]) -> set[str]:
     """Return nodes explicitly listed as parents in the input."""
     return set(family_tree.keys())
-
 
 def main() -> None:
     """Run GIRank on the example tree and print ancestor scores."""
@@ -564,17 +529,9 @@ def main() -> None:
     for ancestor in ancestors:
         print(f"{ancestor}: {scores[ancestor]:.4f}")
 
-
 if __name__ == "__main__":
     main()
 ```
-
-### Design Thinking (Solo Innovator): "How Might We" + user profiles - (P)
-
-The modulebook task: formulate a "How Might We" question and create two fictional user
-profiles with their challenges and needs.
-
-> **TODO** - Add the "How Might We" question and the two user profiles.
 
 ### Notes on the week's assignments
 
@@ -583,10 +540,6 @@ profiles with their challenges and needs.
   is a Bayesian network combining priors, inheritance, and a mutation rate.
 - GIRank reuses the PageRank iteration idea on a family tree, treating leaf members as
   sink nodes whose score is redistributed - output matches the expected reference values.
-
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.2 lectures (uncertainty & probability).
 
 ---
 
@@ -606,7 +559,6 @@ This program generates crossword puzzles by modelling them as a constraint satis
 import sys
 
 from crossword import *
-
 
 class CrosswordCreator():
 
@@ -830,7 +782,6 @@ class CrosswordCreator():
             del assignment[var]  # Value didn't lead to a solution; undo and try next.
         return None  # No value worked for this variable.
 
-
 def main():
 
     # Check usage
@@ -855,27 +806,15 @@ def main():
         if output:
             creator.save(assignment, output)
 
-
 if __name__ == "__main__":
     main()
 ```
-
-### Design Thinking (Solo Innovator): Brainstorm & select ideas - (P)
-
-The modulebook task: brainstorm 10 AI solutions for the defined problem and select the
-3 best, describing why they have potential.
-
-> **TODO** - Add the 10 brainstormed ideas and the top-3 selection with reasoning.
 
 ### Notes on the week's assignments
 
 - Crossword models word placement as a constraint-satisfaction problem: node
   consistency (length), arc consistency via AC-3, and backtracking search with the
   MRV/degree and least-constraining-value heuristics.
-
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.3 lectures (optimization algorithms).
 
 ---
 
@@ -898,7 +837,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 
 TEST_SIZE = 0.4
-
 
 def main():
 
@@ -923,11 +861,9 @@ def main():
     print(f"True Positive Rate: {100 * sensitivity:.2f}%")
     print(f"True Negative Rate: {100 * specificity:.2f}%")
 
-
 # Maps month abbreviations from the CSV to 0-based numeric indices
 MONTHS = {"Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "June": 5,
           "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11}
-
 
 def load_data(filename):
     """
@@ -988,7 +924,6 @@ def load_data(filename):
 
     return evidence, labels
 
-
 def train_model(evidence, labels):
     """
     Given a list of evidence lists and a list of labels, return a
@@ -998,7 +933,6 @@ def train_model(evidence, labels):
     model = KNeighborsClassifier(n_neighbors=1)
     model.fit(evidence, labels)
     return model
-
 
 def evaluate(labels, predictions):
     """
@@ -1027,17 +961,9 @@ def evaluate(labels, predictions):
 
     return sensitivity, specificity
 
-
 if __name__ == "__main__":
     main()
 ```
-
-### Design Thinking (Solo Innovator): Low-fidelity prototype - (P)
-
-The modulebook task: create a low-fidelity prototype (AI flow schema, wireframe, or a
-basic Python script) and test it with a fellow student, recording the feedback.
-
-> **TODO** - Add the low-fidelity prototype and the recorded feedback.
 
 ### Notes on the week's assignments
 
@@ -1045,16 +971,12 @@ basic Python script) and test it with a fellow student, recording the feedback.
   numerically in `load_data`, a k-NN model (k=1) is trained, and performance is reported
   as sensitivity and specificity rather than raw accuracy (the classes are imbalanced).
 
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.4 lectures (machine learning intro).
-
 ---
 
 ## Week 4.5 - AI Learning (Reinforcement Learning)
 
 **Theme:** Reinforcement learning and improving AI from feedback. Practice/portfolio
-assignment: Nim. Begin work on the project presentation.
+assignment: Nim.
 
 ### Nim - (P)
 
@@ -1067,7 +989,6 @@ This program teaches an AI to play the game of Nim using reinforcement learning.
 import math
 import random
 import time
-
 
 class Nim():
 
@@ -1134,7 +1055,6 @@ class Nim():
         # Check for a winner
         if all(pile == 0 for pile in self.piles):
             self.winner = self.player
-
 
 class NimAI():
 
@@ -1228,7 +1148,6 @@ class NimAI():
         # Exploit: pick the action with the highest Q-value
         return max(actions, key=lambda a: self.get_q_value(state, a))
 
-
 def train(n):
     """
     Train an AI by playing `n` games against itself.
@@ -1286,7 +1205,6 @@ def train(n):
 
     # Return the trained AI
     return player
-
 
 def play(ai, human_player=None):
     """
@@ -1350,16 +1268,12 @@ def play(ai, human_player=None):
   with a temporal-difference rule, and an epsilon-greedy policy balances exploration vs.
   exploitation. After self-play training the agent plays optimally against a human.
 
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.5 lectures (RL & improving AI from feedback).
-
 ---
 
 ## Week 4.6 - AI Neural Networks
 
 **Theme:** Deep neural networks and backpropagation. Practice/portfolio assignment:
-Traffic. Project presentation due this week.
+Traffic.
 
 ### Traffic - (P)
 
@@ -1385,7 +1299,6 @@ IMG_WIDTH = 30
 IMG_HEIGHT = 30
 NUM_CATEGORIES = 43
 TEST_SIZE = 0.4
-
 
 def main():
 
@@ -1417,7 +1330,6 @@ def main():
         model.save(filename)
         print(f"Model saved to {filename}.")
 
-
 def load_data(data_dir):
     """
     Load image data from directory `data_dir`.
@@ -1447,7 +1359,6 @@ def load_data(data_dir):
                 labels.append(category)
 
     return images, labels
-
 
 def get_model():
     """
@@ -1479,22 +1390,9 @@ def get_model():
 
     return model
 
-
 if __name__ == "__main__":
     main()
 ```
-
-### Design Thinking (Solo Innovator): Working prototype in code - (P)
-
-The modulebook task: work out the prototype in code (e.g. a chatbot, image recognition,
-or recommender system) using an AI framework such as the OpenAI API, TensorFlow, or
-Scikit-learn.
-
-> **TODO** - Add the coded prototype for the Solo Innovator project.
-
-### Presentation of your project - (P)
-
-> **TODO** - Add the project presentation (slides / link).
 
 ### Notes on the week's assignments
 
@@ -1502,17 +1400,12 @@ Scikit-learn.
   Two Conv2D+MaxPool blocks extract visual features; a `Dropout(0.5)` layer before the
   softmax output measurably reduced overfitting (see *Experimentation* above).
 
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.6 lectures (neural networks & backpropagation).
-
 ---
 
 ## Week 4.7 - AI Language
 
 **Theme:** Natural Language Processing (NLP) & attention mechanisms. Practice
-assignments Parser and Attention; the "Your Own AI Project" deliverable; project pitch;
-and the Professional Skills reflection report.
+assignments Parser and Attention, and the Professional Skills reflection report.
 
 ### Parser - Practice
 
@@ -1554,7 +1447,6 @@ PP -> P NP
 grammar = nltk.CFG.fromstring(NONTERMINALS + TERMINALS)
 parser = nltk.ChartParser(grammar)
 
-
 def main():
 
     # If filename specified, read sentence from file
@@ -1587,13 +1479,11 @@ def main():
         for np in np_chunk(tree):
             print(" ".join(np.flatten()))
 
-
 def preprocess(sentence):
     """Convert sentence to a lowercase list of words, excluding non-alphabetic tokens."""
     words = nltk.word_tokenize(sentence.lower())
     # Drop punctuation and any token that has no letters (e.g. ".", ",", "123")
     return [word for word in words if any(c.isalpha() for c in word)]
-
 
 def np_chunk(tree):
     """Return all NP subtrees that contain no nested NP subtrees."""
@@ -1609,7 +1499,6 @@ def np_chunk(tree):
             if not has_sub_np:
                 chunks.append(subtree)
     return chunks
-
 
 if __name__ == "__main__":
     main()
@@ -1640,7 +1529,6 @@ FONT = ImageFont.truetype("assets/fonts/OpenSans-Regular.ttf", 28)
 GRID_SIZE = 40
 PIXELS_PER_WORD = 200
 
-
 def main():
     text = input("Text: ")
 
@@ -1664,7 +1552,6 @@ def main():
     # Visualize attentions
     visualize_attentions(inputs.tokens(), result.attentions)
 
-
 def get_mask_token_index(mask_token_id, inputs):
     """
     Return the index of the token with the specified `mask_token_id`, or
@@ -1676,8 +1563,6 @@ def get_mask_token_index(mask_token_id, inputs):
             return i
     return None
 
-
-
 def get_color_for_attention_score(attention_score):
     """
     Return a tuple of three integers representing a shade of gray for the
@@ -1687,8 +1572,6 @@ def get_color_for_attention_score(attention_score):
     # float() handles both plain floats and TensorFlow EagerTensors
     value = int(round(float(attention_score) * 255))
     return (value, value, value)
-
-
 
 def visualize_attentions(tokens, attentions):
     """
@@ -1711,7 +1594,6 @@ def visualize_attentions(tokens, attentions):
                 tokens,
                 layer_attentions[0][head_idx]
             )
-
 
 def generate_diagram(layer_number, head_number, tokens, attention_weights):
     """
@@ -1762,7 +1644,6 @@ def generate_diagram(layer_number, head_number, tokens, attention_weights):
     # Save image
     img.save(f"Attention_Layer{layer_number}_Head{head_number}.png")
 
-
 if __name__ == "__main__":
     main()
 ```
@@ -1785,10 +1666,6 @@ Example Sentences:
 - "The scientist [MASK] the experiment carefully." - All content tokens show high attention weight on [CLS], with only weak attention elsewhere.
 - "We [MASK] the problem together last night." - Again, regardless of which word is masked, every token's attention is dominated by the [CLS] position, indicating this head gathers global sentence context rather than tracking local relationships.
 
-### Your Own AI Project - (P)
-
-> **TODO** - Document the "Your Own AI Project" deliverable and the 10-minute pitch.
-
 ### Professional skills: Reflection report - (P)
 
 The modulebook task: write a reflection report - *What worked well? What would you do
@@ -1804,10 +1681,6 @@ differently?* (See also the Professional Skills portfolio.)
   and visualizes each layer/head's self-attention. The analysis interprets two heads
   (local forward-shift; global routing to `[CLS]`).
 
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.7 lectures (NLP & attention).
-
 ---
 
 ## Week 4.8 - Presentation & Demonstration
@@ -1817,13 +1690,9 @@ the criterion-based oral portfolio assessment (Week T4a).
 
 ### Final portfolio review - (P)
 
-> **TODO** - Confirm all weekly assignments and the final product meet the required
-> standards; address any feedback received.
+> **TODO** - Confirm all weekly assignments meet the required standards; address any
+> feedback received.
 
 ### Notes on the week's assignments
 
 > **TODO** - Summary of the final-week activities.
-
-### Results & evaluation of teaching activities
-
-> **TODO** - Reflect on the Week 4.8 activities.
