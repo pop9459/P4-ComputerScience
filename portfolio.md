@@ -10,12 +10,6 @@ This portfolio is structured **week by week** following the modulebook's COMPUTE
 (weeks 4.1–4.8). Per modulebook §5, each week documents the completed assignments,
 programming code, and notes on the week's assignments.
 
-**Legend**
-- **(P)** - explicit portfolio deliverable required by the modulebook schedule.
-- **Practice** - CS50 practice assignment for the week's theme.
-- **Optional** - not required for assessment.
-- `> **TODO**` - placeholder for work not yet completed / not yet documented.
-
 ---
 
 ## Week 4.1 - Planning & Setup
@@ -1666,13 +1660,6 @@ Example Sentences:
 - "The scientist [MASK] the experiment carefully." - All content tokens show high attention weight on [CLS], with only weak attention elsewhere.
 - "We [MASK] the problem together last night." - Again, regardless of which word is masked, every token's attention is dominated by the [CLS] position, indicating this head gathers global sentence context rather than tracking local relationships.
 
-### Professional skills: Reflection report - (P)
-
-The modulebook task: write a reflection report - *What worked well? What would you do
-differently?* (See also the Professional Skills portfolio.)
-
-> **TODO** - Add the reflection report.
-
 ### Notes on the week's assignments
 
 - Parser builds a context-free grammar in NLTK, parses sentences into syntax trees, and
@@ -1680,19 +1667,3 @@ differently?* (See also the Professional Skills portfolio.)
 - Attention uses a pre-trained BERT masked-language model: it predicts the masked token
   and visualizes each layer/head's self-attention. The analysis interprets two heads
   (local forward-shift; global routing to `[CLS]`).
-
----
-
-## Week 4.8 - Presentation & Demonstration
-
-**Theme:** Finalize and refine the portfolio; final project demonstration; prepare for
-the criterion-based oral portfolio assessment (Week T4a).
-
-### Final portfolio review - (P)
-
-> **TODO** - Confirm all weekly assignments meet the required standards; address any
-> feedback received.
-
-### Notes on the week's assignments
-
-> **TODO** - Summary of the final-week activities.
